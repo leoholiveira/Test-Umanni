@@ -1,0 +1,76 @@
+<div data-controller="users" >
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+    <div class="btn-toolbar mb-3 mb-md-0">
+      <div class="btn-group me-3">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="click->users#allUser">all</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="click->users#clientUser">Clients</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-action="click->users#adminUser">Administrators </button>
+      </div>
+      <div class="btn-group me-2">
+        <a href="<%= new_user_path %>" class="btn btn-sm btn-outline-secondary">Create user</a>
+        <label for="customFile" class="btn btn-sm btn-outline-secondary">Import CSV</label>
+      </div>
+    </div>
+  </div>
+  <input type="file" class="btn btn-sm btn-outline-secondary" style="visibility:hidden;" id="customFile" data-action="change->users#importFile">
+
+  <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm border-primary" data-action="click->users#allUser" style="cursor: pointer">
+        <div class="card-header py-3 text-white bg-primary border-primary">
+          <h4 class="my-0 fw-normal">Total</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title" data-users-target="total"></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Users</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm" data-action="click->users#clientUser" style="cursor: pointer">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal">Clients</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title" data-users-target="clients"></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Clients</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm" data-action="click->users#adminUser"  style="cursor: pointer">
+        <div class="card-header py-3 ">
+          <h4 class="my-0 fw-normal">Administrator</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title" data-users-target="admins"></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Admin</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Users</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Avatar</th>
+          <th scope="col">Role</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody data-users-target="list"></tbody>
+    </table>
+  </div>
+</div>

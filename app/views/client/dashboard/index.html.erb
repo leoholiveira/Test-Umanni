@@ -1,0 +1,20 @@
+<div data-controller="users" >
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+  </div>
+
+  <div class="row mb-1">
+    <div class="col-md-12">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Hello</strong>
+          <h3 class="mb-0"><%= current_user.fullname %></h3>
+          <div class="mb-1 text-muted"><%= current_user.email %></div>
+          <a href="<%= edit_client_user_path(current_user) %>" class="stretched-link">Edit my account</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <img src="<%= current_user.avatar_image %>" style="max-width: 500px">
+        </div>
+      </div>
+    </div>
+  </div>

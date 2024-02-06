@@ -1,0 +1,52 @@
+<%= form_for(@user, url: (@user.id.present? ? admin_user_path(@user) : '/admin/users')) do |f| %>
+  <div class="row">
+    <div class="form-outline mb-4 col-sm-6">
+      <%= f.text_field :fullname, class: 'form-control form-control-lg', required: true %>
+      <%= f.label :fullname, class: 'form-label' %>
+    </div>
+
+    <div class="form-outline mb-4 col-sm-6">
+      <%= f.select(:user_type, User.user_types.keys.map { |t| [t.humanize, t] }, {}, {class: 'form-select form-control form-control-lg'}) %>
+      <%= f.label :user_type, class: 'form-label' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-outline mb-4 col-sm-6">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-lg', required: true %>
+      <%= f.label :email, class: 'form-label' %>
+    </div>
+
+    <div class="form-outline mb-4 col-sm-6">
+      <%= f.text_field :avatar_image, class: 'form-control form-control-lg', required: true %>
+      <%= f.label :avatar_image, class: 'form-label' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-outline mb-4 col-sm-6">
+      <% if @user.id.present? %>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control form-control-lg' %>
+      <% else %>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control form-control-lg', required: true %>
+      <% end %>
+      <%= f.label :password, class: 'form-label' %> <%= "<i>(leave blank if you don't want to change it)</i>".html_safe if @user.id.present? %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+    </div>
+
+    <div class="form-outline mb-4 col-sm-6">
+      <% if @user.id.present? %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control form-control-lg' %>
+      <% else %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control form-control-lg', required: true %>
+      <% end %>
+      
+      <%= f.label :password_confirmation, class: 'form-label' %>
+    </div>
+  </div>
+  <div class="pt-1 mb-4">
+    <%= f.submit nil, class: 'btn btn-dark btn-lg btn-block' %>
+  </div>
+<% end %>
